@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TOC from "./components/TOC";
 import Content from "./components/Content";
-//import Subject from "./components/Subject";
+import Subject from "./components/Subject";
 import './App.css';
 
 class App extends Component {
@@ -27,18 +27,22 @@ class App extends Component {
       _title = this.state.contents[0].title;
       _desc = this.state.contents[0].desc;
     }
+    console.log(this);
     return (
       <div className="App">
-        {/*<Subject 
+        <Subject
           title={this.state.subject.title} 
-          sub={this.state.subject.sub}>
+          sub={this.state.subject.sub}
+          onChangePage={function(){
+            alert('hihihi');
+          }.bind(this)}
+          >
         </Subject>
-        */}
-        <header>
+        {/*<header>
           <h1><a href="/" onClick={function(event) {
             console.log(event);
             event.preventDefault();
-            //this.state.mode = 'welcome';
+            //this.state.mode = 'welcome'; 리액트 몰래 바꾼 것이 되므로 렌더링 불가
             if (this.state.mode === 'welcome') {
               this.setState({
                 mode:'read'
@@ -50,7 +54,8 @@ class App extends Component {
             }
           }.bind(this)}>{this.state.subject.title}</a></h1>
           {this.state.subject.sub}
-        </header>
+           //bind 함수는 호출된 앞 함수에 this 값을 넣어준다
+        </header>*/}
         <TOC data={this.state.contents}></TOC>
         <Content title={_title} desc={_desc}></Content>
       </div>
