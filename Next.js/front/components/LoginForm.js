@@ -2,25 +2,31 @@ import React, { useState, useCallback } from 'react';
 import { Form, Button } from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import useInput from '../hooks/useInput';
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
 `; // 인라인 스타일 대신 스타일 컴포넌트를 이용하자
 
-const LoginForm = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
 
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  },[]);
+const FormWrapper = styled(Form)`
+  padding: 10px;
+`;
 
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  },[]);
+
+const LoginForm = ({ setIsLoggedIn }) => {
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
+
+  const onSubmitForm = useCallback(() => {
+    console.log(id, password);
+    setIsLoggedIn(true);
+  }, [id, password]);
 
   return (
-    <Form>
+    <FormWrapper onFinish={onSubmitForm}> 
+    {/* antd 에서 onFinish 에는 preventDefault 가 내장되있음.*/}
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
@@ -45,8 +51,12 @@ const LoginForm = () => {
         <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
         <Link href="/signup"><a><Button>회원가입</Button></a></Link>
       </ButtonWrapper>
-    </Form>
+    </FormWrapper>
   );
+}
+
+LoginForm.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 }
 
 export default LoginForm;
