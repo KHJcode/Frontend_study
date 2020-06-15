@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Button, Card, StopOutlined } from 'antd';
+import { List, Button, Card } from 'antd';
 
 const FollowList = ({ header, data }) => {
   return (
@@ -14,7 +14,7 @@ const FollowList = ({ header, data }) => {
       dataSource={data}
       renderItem={(item) => {
         <List.Item style={{ marginTop: 20 }}>
-          <Card actions={[<StopOutlined key="stop" />]}>
+          <Card actions={[]}>
             <Card.Meta description={item.nickname} />
           </Card>
         </List.Item>
@@ -23,7 +23,7 @@ const FollowList = ({ header, data }) => {
   )
 };
 
-FollowList.prototype = {
+FollowList.propTypes = {
   header: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
 };
