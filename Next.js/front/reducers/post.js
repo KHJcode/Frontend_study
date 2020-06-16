@@ -3,15 +3,15 @@ export const initialState = {
     id: 1,
     User: {
       id: 1,
-      nickname: '제로초',
+      nickname: 'KHJ',
     },
     content: '첫 번째 게시글 #해시태그 #익스프레스',
     Images: [{
-      src: ''
+      src: 'https://naver.com'
     },{
-      src: ''
+      src: 'https://naver.com'
     },{
-      src: ''
+      src: 'https://naver.com'
     }],
     Comments: [
     {
@@ -55,7 +55,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         mainPosts: [dummyPost, ...state.mainPosts],
-      }
+        postAdded: true,
+      };
     default:
       return state;
   }

@@ -4,15 +4,6 @@ import { combineReducers } from 'redux';
 import user from './user';
 import post from './post';
 
-const initialState = {
-  user : {
-    
-  },
-  post: {
-    
-  }
-};
-
 // (이전 상태, 액션) => 다음 상태
 const rootReducer = combineReducers({
   index: (state = {}, action) => {

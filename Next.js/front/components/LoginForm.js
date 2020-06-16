@@ -17,7 +17,7 @@ const FormWrapper = styled(Form)`
 `;
 
 
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
