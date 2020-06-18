@@ -7,11 +7,11 @@ export const initialState = {
     },
     content: '첫 번째 게시글 #해시태그 #익스프레스',
     Images: [{
-      src: 'https://naver.com'
+      src: 'https://khjcode.netlify.app/KHJ%20code.png'
     },{
-      src: 'https://naver.com'
+      src: 'https://dailycon.ks-kimstudio.com/images/logo.png'
     },{
-      src: 'https://naver.com'
+      src: 'https://khjcode.netlify.app/KHJ%20code.png'
     }],
     Comments: [
     {
