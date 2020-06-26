@@ -1,3 +1,5 @@
+import shortId from 'shortid';
+
 export const initialState = {
   mainPosts: [{
     id: 1,
@@ -8,25 +10,24 @@ export const initialState = {
     content: '첫 번째 게시글 #해시태그 #익스프레스',
     Images: [{
       src: 'https://khjcode.netlify.app/KHJ%20code.png'
-    },{
+    }, {
       src: 'https://dailycon.ks-kimstudio.com/images/logo.png'
-    },{
+    }, {
       src: 'https://khjcode.netlify.app/KHJ%20code.png'
     }],
-    Comments: [
-    {
-      User:{
+    Comments: [{
+      User: {
         nickname: 'hero',
       },
-      content: '너무 쉬워요'
+      content: '너무 쉬워요',
     },
     {
-      User:{
-        nickname:'khj',
+      User: {
+        nickname: 'khj',
       },
-      content: '겁나 어려워요'
-    }
-    ]
+      content: '겁나 어려워요',
+    },
+    ],
   }],
   imagePaths: [],
   addPostLoading: false,
@@ -35,7 +36,7 @@ export const initialState = {
   addCommentLoading: false,
   addCommentDone: false,
   addCommentError: null,
-}
+};
 
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -55,16 +56,16 @@ export const addComment = (data) => ({
   data,
 });
 
-const dummyPost = {
-  id: 2,
-  content: '더미데이터',
+const dummyPost = (data) => ({
+  id: shortId().generate(),
+  content: data,
   User: {
     id: 1,
-    nickname: '근근맨',
+    nickname: '근해근',
   },
   Images: [],
   Comments: [],
-}
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -78,7 +79,7 @@ const reducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
       return {
         ...state,
-        mainPosts: [dummyPost, ...state.mainPosts],
+        mainPosts: [dummyPost(action.data), ...state.mainPosts],
         addPostLoading: false,
         addPostDone: true,
       };
@@ -110,6 +111,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default reducer;

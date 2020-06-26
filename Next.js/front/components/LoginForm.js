@@ -11,15 +11,13 @@ const ButtonWrapper = styled.div`
   margin-top: 10px;
 `; // 인라인 스타일 대신 스타일 컴포넌트를 이용하자
 
-
 const FormWrapper = styled(Form)`
   padding: 10px;
 `;
 
-
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { logInLoading } = useSelector(state => state.user);
+  const { logInLoading } = useSelector((state) => state.user);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
 
@@ -29,8 +27,7 @@ const LoginForm = () => {
   }, [email, password]);
 
   return (
-    <FormWrapper onFinish={onSubmitForm}> 
-    {/* antd 에서 onFinish 에는 preventDefault 가 내장되있음.*/}
+    <FormWrapper onFinish={onSubmitForm}>
       <div>
         <label htmlFor="user-email">이메일</label>
         <br />
@@ -52,6 +49,6 @@ const LoginForm = () => {
       </ButtonWrapper>
     </FormWrapper>
   );
-}
+};
 
 export default LoginForm;

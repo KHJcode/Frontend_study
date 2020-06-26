@@ -1,4 +1,7 @@
 export const initialState = {
+  followLoading: false, // Follow try...
+  followDone: false,
+  followError: null,
   logInLoading: false, // Login try...
   logInDone: false,
   logInError: null,
@@ -8,10 +11,13 @@ export const initialState = {
   signUpLoading: false, // Signup try...
   signUpDone: false,
   signUpError: null,
+  changeNicknameLoading: false, // Change Nickname try...
+  changeNicknameDone: false,
+  changeNicknameError: null,
   me: null,
   signUpData: {},
   loginData: {},
-}
+};
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -20,6 +26,10 @@ export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
 export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
+
+export const CHANGE_NICKNAME_REQUEST = 'CHANGE_NICKNAME_REQUEST';
+export const CHANGE_NICKNAME_SUCCESS = 'CHANGE_NICKNAME_SUCCESS';
+export const CHANGE_NICKNAME_FAILURE = 'CHANGE_NICKNAME_FAILURE';
 
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -37,7 +47,7 @@ const dummyUser = (data) => ({
   ...data,
   nickname: 'KHJcode',
   id: 1,
-  Posts: [],
+  Posts: [{ id: 1 }],
   Followings: [],
   Followers: [],
 });
@@ -46,14 +56,14 @@ export const loginRequestAction = (data) => {
   return {
     type: LOG_IN_REQUEST,
     data,
-  }
-}
+  };
+};
 
 export const logoutRequestAction = () => {
   return {
     type: LOG_OUT_REQUEST,
-  }
-}
+  };
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -68,8 +78,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         logInLoading: false,
-        logInDone: true,
         me: dummyUser(action.data),
+        logInDone: true,
       };
     case LOG_IN_FAILURE:
       return {
@@ -83,7 +93,7 @@ const reducer = (state = initialState, action) => {
         logOutLoading: true,
         logOutDone: false,
         logOutError: null,
-        me: null
+        me: null,
       };
     case LOG_OUT_SUCCESS:
       return {
@@ -97,13 +107,33 @@ const reducer = (state = initialState, action) => {
         logOutLoading: false,
         logOutError: action.error,
       };
+    case CHANGE_NICKNAME_REQUEST:
+      return {
+        ...state,
+        changeNicknameLoading: true,
+        changeNicknameDone: false,
+        changeNicknameError: null,
+        me: null,
+      };
+    case CHANGE_NICKNAME_SUCCESS:
+      return {
+        ...state,
+        changeNicknameLoading: false,
+        changeNicknameDone: false,
+      };
+    case CHANGE_NICKNAME_FAILURE:
+      return {
+        ...state,
+        changeNicknameLoading: false,
+        changeNicknameError: action.error,
+      };
     case SIGN_UP_REQUEST:
       return {
         ...state,
         signUpLoading: true,
         signUpDone: false,
         signUpError: null,
-        me: null
+        me: null,
       };
     case SIGN_UP_SUCCESS:
       return {
@@ -120,6 +150,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default reducer;

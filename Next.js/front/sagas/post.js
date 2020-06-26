@@ -11,17 +11,17 @@ function addPostAPI(data) {
 }
 
 function* addPost(action) {
-  const result = yield delay(1000);
+  yield delay(1000);
   //const result = yield call(addPostAPI, action.data);
   try {
     yield put({
       type: ADD_POST_SUCCESS,
-      data: result.data
+      data: action.data,
     });
   } catch (err) {
     yield put({
       type: ADD_POST_FAILURE,
-      error: err.resonse.data
+      error: err.resonse.data,
     });
   }
 }
@@ -31,17 +31,17 @@ function addCommentAPI(data) {
 }
 
 function* addComment(action) {
-  const result = yield delay(1000);
+  yield delay(1000);
   //const result = yield call(addPostAPI, action.data);
   try {
     yield put({
       type: ADD_COMMENT_SUCCESS,
-      data: result.data
+      data: action.data,
     });
   } catch (err) {
     yield put({
       type: ADD_COMMENT_FAILURE,
-      error: err.resonse.data
+      error: err.resonse.data,
     });
   }
 }

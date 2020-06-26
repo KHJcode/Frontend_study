@@ -7,7 +7,7 @@ import NickNameEditForm from '../components/NicknameEditForm';
 import FollowList from '../components/FollowList';
 
 const Profile = () => {
-  const { me } = useSelector(state => state.user);
+  const { me } = useSelector((state) => state.user);
 
   return (
     <>
@@ -21,7 +21,7 @@ const Profile = () => {
         <FollowList header="팔로워" data={me.Followers} />
       </AppLayout>
     </>
-  )
+  );
 };
 
 export default Profile;

@@ -6,15 +6,15 @@ import MenuItem from 'antd/lib/menu/MenuItem';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
-import UserProfile from '../components/UserProfile';
-import LoginForm from '../components/LoginForm';
+import UserProfile from './UserProfile';
+import LoginForm from './LoginForm';
 
 const SearchInput = styled(Input.Search)`
   vertical-align: middle;
 `;
 
 const AppLayout = ({ children }) => {
-  const { me } = useSelector((state) => state.user.logInDone);
+  const { me } = useSelector((state) => state.user);
 
   return (
     <div>
