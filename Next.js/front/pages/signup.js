@@ -1,4 +1,5 @@
-import React,{ useCallback, useState } from 'react';
+/* eslint-disable consistent-return */
+import React, { useCallback, useState } from 'react';
 import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 import styled from 'styled-components';
@@ -14,7 +15,6 @@ const ErrorMessage = styled.div`
 `;
 
 const Signup = () => {
-
   const dispatch = useDispatch();
   const { signUpLoading } = useSelector(state => state.user);
 
@@ -25,9 +25,9 @@ const Signup = () => {
   const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const onChangePasswordCheck = useCallback((e) => {
-      setPasswordCheck(e.target.value);
-      setPasswordError(e.target.value !== password);
-  },[]);
+    setPasswordCheck(e.target.value);
+    setPasswordError(e.target.value !== password);
+  }, []);
 
   const [term, setTerm] = useState('');
   const [termError, setTermError] = useState(false);
@@ -46,7 +46,7 @@ const Signup = () => {
     console.log(email, nickname, password);
     dispatch({
       type: SIGN_UP_REQUEST,
-      data: { email, password, nickname }
+      data: { email, password, nickname },
     });
   }, [password, passwordCheck, term]);
 
