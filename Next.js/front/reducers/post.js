@@ -28,7 +28,7 @@ export const generateDummyPost = (number) => Array(number).fill().map(() => ({
   },
   content: faker.lorem.paragraph(),
   Images: [{
-    src: faker.image.imageUrl(),
+    src: faker.image.image(),
   }],
   Comments: [{
     User: {

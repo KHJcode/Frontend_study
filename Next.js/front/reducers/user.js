@@ -4,6 +4,9 @@ export const initialState = {
   followLoading: false, // Follow try...
   followDone: false,
   followError: null,
+  unfollowLoading: false, // Unfollow try...
+  unfollowDone: false,
+  unfollowError: null,
   logInLoading: false, // Login try...
   logInDone: false,
   logInError: null,
@@ -53,25 +56,49 @@ const dummyUser = (data) => ({
   nickname: 'KHJcode',
   id: 1,
   Posts: [{ id: 1 }],
-  Followings: [],
-  Followers: [],
+  Followings: ['김형진', '근근맨', '빠끄'],
+  Followers: ['KHJ', 'DAILYCON'],
 });
 
-export const loginRequestAction = (data) => {
-  return {
-    type: LOG_IN_REQUEST,
-    data,
-  };
-};
+export const loginRequestAction = (data) => ({
+  type: LOG_IN_REQUEST,
+  data,
+});
 
-export const logoutRequestAction = () => {
-  return {
-    type: LOG_OUT_REQUEST,
-  };
-};
+export const logoutRequestAction = () => ({
+  type: LOG_OUT_REQUEST,
+});
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
+    case FOLLOW_REQUEST:
+      draft.followLoading = true;
+      draft.followError = null;
+      draft.followDone = false;
+      break;
+    case FOLLOW_SUCCESS:
+      draft.followLoading = false;
+      draft.me.Followings.push({ id: action.data });
+      draft.followDone = true;
+      break;
+    case FOLLOW_FAILURE:
+      draft.followLoading = false;
+      draft.followError = action.error;
+      break;
+    case UN_FOLLOW_REQUEST:
+      draft.unfollowLoading = true;
+      draft.unfollowError = null;
+      draft.unfollowDone = false;
+      break;
+    case UN_FOLLOW_SUCCESS:
+      draft.unfollowLoading = false;
+      draft.me.Followings = draft.me.Followings.filter((v) => v.id !== action.data);
+      draft.unfollowDone = true;
+      break;
+    case UN_FOLLOW_FAILURE:
+      draft.unfollowLoading = false;
+      draft.unfollowError = action.error;
+      break;
     case LOG_IN_REQUEST:
       draft.logInLoading = true;
       draft.logInError = null;
