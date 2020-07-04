@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app"
   },
   "author": "KHJcode",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
+    "nodemon": "^2.0.4",
     "sequelize": "^6.2.4",
     "sequelize-cli": "^6.1.0"
   }
