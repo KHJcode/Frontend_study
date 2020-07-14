@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import List from './List';
-
+import useFetch from './useFetch';
 
 const App = () => {
-  const [todos, setTodos] = useState(['js공부']);
+  const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
+
+  const loading = useFetch(setTodos, 'http://localhost:8000/todo');
 
   const changeInputData = (e) => {
     setNewTodo(e.target.value);
@@ -13,7 +15,7 @@ const App = () => {
 
   const addTodo = (e) => {
     e.preventDefault();
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, { title : newTodo, id: todos.length+1 }]);
     setNewTodo('');
   };
 
@@ -25,10 +27,10 @@ const App = () => {
     <>
     <h1>todo 에플리케이션</h1>
     <form action="">
-      <input type="text" name="" onChange={changeInputData} value={newTodo} />
+      <input type="text" onChange={changeInputData} value={newTodo} />
       <button onClick={addTodo}>할 일 추가</button>
     </form>
-    <List todos={todos} />
+    <List todos={todos} loading={loading} />
     </>
   );
 };
