@@ -5,10 +5,10 @@ const cors = require('cors');
 const PORT = process.env.PORT || 8000;
 
 const state = [
-  {id: 1, title: '수학 공부하기'},
-  {id: 2, title: 'C# 공부하기'},
-  {id: 3, title: '앱 개발하기'},
-  {id: 4, title: '커밋하기'}
+  {id: 1, title: '수학 공부하기', status: 'todo'},
+  {id: 2, title: 'C# 공부하기', status: 'todo'},
+  {id: 3, title: '앱 개발하기', status: 'todo'},
+  {id: 4, title: '커밋하기', status: 'todo'}
 ];
 
 app.use(cors());
