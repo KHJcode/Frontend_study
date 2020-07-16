@@ -3,3 +3,7 @@
   text-decoration: line-through;
   font-style: italic;
 }
+
+li {
+  cursor: pointer;
+}

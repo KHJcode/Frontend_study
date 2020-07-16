@@ -3,7 +3,10 @@ import './App.css';
 
 import List from './components/List/';
 import Header from './components/Header/';
+import Form from './components/Form/';
 import useFetch from './useFetch';
+
+export const TodoContext = React.createContext();
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -12,6 +15,7 @@ const App = () => {
   const loading = useFetch(setTodos, 'http://localhost:8000/todo');
 
   const changeInputData = (e) => {
+    console.log(e.target.value);
     setNewTodo(e.target.value);
   };
 
@@ -37,16 +41,15 @@ const App = () => {
   }, [todos]);
 
   return (
-    <>
-    <Header todos={todos} />
-    <form action="">
-      <input type="text" onChange={changeInputData} value={newTodo} />
-      <button onClick={addTodo}>할 일 추가</button>
-    </form>
-    <List todos={todos} loading={loading} changeTodoStatus={changeTodoStatus} />
-    </>
+    <TodoContext.Provider
+      value={{ todos, addTodo, changeInputData,
+        newTodo, loading, changeTodoStatus
+    }}>
+      <Header />
+      <Form />
+      <List />
+    </TodoContext.Provider>
   );
 };
 
 export default App;
-
