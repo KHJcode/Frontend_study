@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
+
 import Item from '../Item/';
-import { TodoContext } from '../../App';
+
+import { TodoContext } from '../../TodoStore';
 
 const List = () => {
-  const { todos, loading, changeTodoStatus } = useContext(TodoContext);
+  const { todos, loading } = useContext(TodoContext);
   let todoList = <div>Loading...</div>;
   if (!loading) todoList = todos.map(todo => 
-    <Item key={todo.id} todo={todo} changeTodoStatus={changeTodoStatus} />
+    <Item key={todo.id} todo={todo} />
   );
   return (
     <ul>

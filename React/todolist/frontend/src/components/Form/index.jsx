@@ -1,13 +1,14 @@
 import React, { useContext, useRef } from 'react';
-import { TodoContext } from '../../App';
+
+import { TodoContext } from '../../TodoStore';
 
 const Form = () => {
   const inputRef = useRef(false);
-  const { addTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   const addTodoData = (e) => {
     e.preventDefault();
-    addTodo(inputRef.current.value);
+    dispatch({ type: 'ADD_TODO', payload: inputRef.current.value });
     inputRef.current.value = '';
   };
 
