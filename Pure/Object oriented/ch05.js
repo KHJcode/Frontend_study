@@ -5,6 +5,7 @@ const control = {
   random: () => (Math.random()),
 };
 
+console.log('type:', typeof(control));
 console.log('sum:', control.sum(3, 6));
 console.log('sub:', control.sub(6, 3));
 console.log('pi:', control.pi());
