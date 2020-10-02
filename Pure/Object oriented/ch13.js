@@ -1,7 +1,7 @@
 const Tom = { name: 'Tom', score1: 50, score2: 40, };
 const Jun = { name: 'Jun', score1: 30, score2: 40, };
 
-function sum(name) {
+function sum (name) {
   console.log(name);
   return this.score1 + this.score2;
 }
